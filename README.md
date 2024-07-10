@@ -19,7 +19,7 @@
 
 ## Screenshots of the Application
 
-![alt text](<Screenshot (34).png>)
+![alt text](<Screenshot (36).png>)
 
 ![alt text](<Screenshot (32)-1.png>)
 
