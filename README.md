@@ -29,7 +29,9 @@
 
 ## Additional Features and Improvements
 1.Implement actual authentication and authorization.
+
 2.Connect the frontend with a backend service to persist data.
+
 3.Improve error handling and user feedback.
 
 ## Further help
