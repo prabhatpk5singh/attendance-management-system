@@ -17,10 +17,6 @@
 
 4. Open your browser and navigate to http://localhost:4200.
 
-# AttendanceManagementSystem
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
-
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
