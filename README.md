@@ -6,7 +6,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/attendance-management-system.git
+   git clone https://github.com/prabhatpk5singh/attendance-management-system.git
    cd attendance-management-system
 
 2. Install dependencies:
