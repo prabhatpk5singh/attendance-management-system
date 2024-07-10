@@ -14,6 +14,9 @@ export class ManagerDashboardComponent implements OnInit {
     shift: ''
   };
 
+  isEditing: boolean = false;
+  editingIndex: number = -1;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -32,5 +35,22 @@ export class ManagerDashboardComponent implements OnInit {
   addStaff() {
     this.roster.push({ ...this.newStaff });
     this.newStaff = { name: '', workingDays: '', shift: '' };
+  }
+
+  editStaff(staff: any, index: number) {
+    this.newStaff = { ...staff };
+    this.isEditing = true;
+    this.editingIndex = index;
+  }
+
+  updateStaff() {
+    this.roster[this.editingIndex] = { ...this.newStaff };
+    this.newStaff = { name: '', workingDays: '', shift: '' };
+    this.isEditing = false;
+    this.editingIndex = -1;
+  }
+
+  deleteStaff(index: number) {
+    this.roster.splice(index, 1);
   }
 }

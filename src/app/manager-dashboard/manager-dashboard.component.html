@@ -18,7 +18,8 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-12 text-right">
-        <button (click)="addStaff()" class="btn btn-primary">Add Staff</button>
+        <button (click)="addStaff()" class="btn btn-primary" *ngIf="!isEditing">Add Staff</button>
+        <button (click)="updateStaff()" class="btn btn-primary" *ngIf="isEditing">Update Staff</button>
       </div>
     </div>
   </div>
@@ -29,13 +30,18 @@
         <th>Name</th>
         <th>Working Days</th>
         <th>Shift</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let staff of roster">
+      <tr *ngFor="let staff of roster; let i = index">
         <td data-label="Name">{{ staff.name }}</td>
         <td data-label="Working Days">{{ staff.workingDays }}</td>
         <td data-label="Shift">{{ staff.shift }}</td>
+        <td data-label="Actions">
+          <button class="btn btn-sm btn-warning" (click)="editStaff(staff, i)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteStaff(i)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

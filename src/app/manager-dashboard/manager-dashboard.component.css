@@ -35,6 +35,10 @@ h2 {
   background-color: #f9f9f9;
 }
 
+.table td button {
+  margin-right: 5px;
+}
+
 /* Responsive table */
 @media (max-width: 767.98px) {
   .table thead {
@@ -67,5 +71,10 @@ h2 {
     padding-left: 15px;
     font-weight: bold;
     text-align: left;
+  }
+
+  .table td button {
+    width: 100%;
+    margin-top: 5px;
   }
 }
