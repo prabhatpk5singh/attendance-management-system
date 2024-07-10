@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Staff Portal</h2>
+
+  <div class="card p-3 mb-4">
+    <h3>Your Assigned Shifts</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Working Days</th>
+          <th>Shift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shift of shifts">
+          <td>{{ shift.workingDays }}</td>
+          <td>{{ shift.shift }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card p-3">
+    <h3>Mark Attendance</h3>
+    <video #video width="320" height="240" autoplay></video>
+    <button (click)="captureImage()" class="btn btn-primary mt-3">Capture Image</button>
+    <canvas #canvas width="320" height="240" style="display:none;"></canvas>
+    <img #capturedImage [src]="capturedImageUrl" alt="Captured Image" *ngIf="capturedImageUrl">
+  </div>
+</div>
