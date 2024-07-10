@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-staff-portal',
@@ -6,38 +7,49 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./staff-portal.component.css']
 })
 export class StaffPortalComponent implements OnInit {
-  shifts = [
-    { workingDays: 'Mon-Fri', shift: 'Morning' },
-    { workingDays: 'Mon-Wed, Fri', shift: 'Evening' },
-    { workingDays: 'Tue-Thu', shift: 'Night' }
-  ];
+  @ViewChild('video', { static: true }) video!: ElementRef;
+  @ViewChild('canvas', { static: true }) canvas!: ElementRef;
+  roster: any[] = [];
+  attendanceMessage: string = '';
+  capturedImage: string | null = null;
 
-  @ViewChild('video') video!: ElementRef<HTMLVideoElement>;
-  @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('capturedImage') capturedImage!: ElementRef<HTMLImageElement>;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  capturedImageUrl: string | null = null;
-
-  ngOnInit() {
-    this.startVideo();
+  ngOnInit(): void {
+    this.loadRoster();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initWebcam();
+    }
   }
 
-  startVideo() {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        const videoElement = this.video.nativeElement;
+  loadRoster() {
+    // Mock data
+    this.roster = [
+      { name: 'Prabhat Roshan', workingDays: 'Mon-Fri', shift: 'Morning' },
+      { name: 'Deepak Singh', workingDays: 'Mon-Wed, Fri', shift: 'Evening' },
+      { name: 'Karan Sharma', workingDays: 'Tue-Thu', shift: 'Night' },
+    ];
+  }
+
+  initWebcam() {
+    const videoElement = this.video.nativeElement;
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
         videoElement.srcObject = stream;
         videoElement.play();
-      })
-      .catch(err => console.error('Error accessing webcam: ', err));
+      }).catch(error => {
+        console.error('Error accessing webcam: ', error);
+      });
+    } else {
+      console.error('Webcam not supported in this environment');
+    }
   }
 
-  captureImage() {
-    const canvasElement = this.canvas.nativeElement;
-    const context = canvasElement.getContext('2d');
-    if (context) {
-      context.drawImage(this.video.nativeElement, 0, 0, canvasElement.width, canvasElement.height);
-      this.capturedImageUrl = canvasElement.toDataURL('image/png');
-    }
+  capture() {
+    const context = this.canvas.nativeElement.getContext('2d');
+    context.drawImage(this.video.nativeElement, 0, 0, 320, 240);
+    this.capturedImage = this.canvas.nativeElement.toDataURL('image/png');
+    this.attendanceMessage = 'Attendance marked successfully!';
   }
 }
