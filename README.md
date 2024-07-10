@@ -17,6 +17,14 @@
 
 4. Open your browser and navigate to http://localhost:4200.
 
+## Screenshots of the Application
+
+![alt text](<Screenshot (31).png>)
+
+![alt text](<Screenshot (32).png>)
+
+![alt text](<Screenshot (33).png>)
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
