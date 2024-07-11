@@ -18,7 +18,9 @@
 4. Open your browser and navigate to http://localhost:4200.
 
 5. In the Login Page use Credentials as follows for Authentication:
+   
     Manager Portal - Username : manager , Password : managerpass
+   
     Staff Portal - Username : staff , Password : staffpass
 
 ## Screenshots of the Application
