@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://your-backend-api-url/auth';
+  private isAuthenticated: boolean = false;
+  private role: string = '';
 
-  constructor(private http: HttpClient) { }
-
-  login(credentials: { username: string, password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+  login(username: string, password: string): boolean {
+    if (username === 'manager' && password === 'managerpass') {
+      this.isAuthenticated = true;
+      this.role = 'manager';
+      return true;
+    } else if (username === 'staff' && password === 'staffpass') {
+      this.isAuthenticated = true;
+      this.role = 'staff';
+      return true;
+    }
+    this.isAuthenticated = false;
+    return false;
   }
 
-  logout(): void {
+  logout() {
+    this.isAuthenticated = false;
+    this.role = '';
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+  isLoggedIn(): boolean {
+    return this.isAuthenticated;
+  }
+
+  getRole(): string {
+    return this.role;
   }
 }
