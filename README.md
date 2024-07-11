@@ -27,6 +27,13 @@
 
 ![alt text](<Screenshot (39).png>)
 
+## Additional Features and Improvements
+1.Implement actual authentication and authorization.
+
+2.Connect the frontend with a backend service to persist data.
+
+3.Improve error handling and user feedback.
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
